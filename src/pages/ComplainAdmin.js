@@ -21,14 +21,17 @@ export default function ComplainAdmin() {
   const [state] = useContext(UserContext);
 
   useEffect(() => {
-    socket = io("http://localhost:5000", {
-      auth: {
-        token: localStorage.getItem("token"),
-      },
-      query: {
-        id: state.user.id,
-      },
-    });
+    socket = io(
+      "https://dumb-merch2.herokuapp.com/" || "http://localhost:5000",
+      {
+        auth: {
+          token: localStorage.getItem("token"),
+        },
+        query: {
+          id: state.user.id,
+        },
+      }
+    );
 
     // define listener for every updated message
     socket.on("new message", () => {
